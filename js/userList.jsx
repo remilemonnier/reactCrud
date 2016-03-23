@@ -1,27 +1,6 @@
-/*import Router from 'react-router';
-import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
+import React from 'react';
+import ReactDom from 'react-dom';
 
-var routes = (
-    <Route name="app" path="/" handler={App}>
-        <Route name="login" path="/login" handler={LoginHandler}/>
-    </Route>
-    );*/
-
-var User = React.createClass({
-    render: function() {
-        return (
-            <tr>
-                <td ><img src={this.props.picture.thumbnail} /></td>
-                <td >{this.props.username}</td>
-                <td >{this.props.email}</td>
-                <td >{this.props.phone}</td>
-                <td >
-                    <button type="button" className="btn btn-sm btn-primary" >Edit</button>
-                </td>
-            </tr>
-            );
-    }
-});
 
 var UserList = React.createClass({
     getInitialState: function(){
@@ -84,7 +63,7 @@ var UserList = React.createClass({
 
 
 
-ReactDOM.render(
+ReactDom.render(
     <UserList source="https://randomuser.me/api/?results=5" />,
 document.getElementById('container')
 );
