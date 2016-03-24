@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-
+import User from './user.jsx';
+//import User from './module';
 
 var UserList = React.createClass({
     getInitialState: function(){
         return {
-            users: [],
-            editingUser: {name:""}
+            users: []
         };
     },
     addUser: function(){
@@ -30,6 +30,7 @@ var UserList = React.createClass({
                     },
                 };
             });
+
             this.setState({users: users});
         }.bind(this));
     },
@@ -37,6 +38,7 @@ var UserList = React.createClass({
         var self = this;
         var users = this.state.users.map(function(p){
             return <User username={p.username} email={p.email} phone={p.phone} picture={p.picture} />
+            //return <tr><td>toto</td></tr>
         });
         return (
             <div>
@@ -62,6 +64,7 @@ var UserList = React.createClass({
 });
 
 
+//module.exports = UserList;
 
 ReactDom.render(
     <UserList source="https://randomuser.me/api/?results=5" />,

@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDom from 'react-dom';
 
 var User = React.createClass({
-    render() {
-        return
+    render: function() {
+        return (
             <tr>
                 <td ><img src={this.props.picture.thumbnail} height="40" width="40"/></td>
                 <td >{this.props.username}</td>
@@ -12,9 +11,9 @@ var User = React.createClass({
                 <td >
                     <button type="button" className="btn btn-sm btn-primary" >Edit</button>
                 </td>
-            </tr>
+            </tr>)
             ;
     }
 });
 
-
+module.exports = User;
