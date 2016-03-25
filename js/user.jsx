@@ -2,12 +2,8 @@ import React from 'react';
 import {Router, Route, IndexRoute, Link} from 'react-router';
 
 var User = React.createClass({
-    /*componentDidMount() {
-        this.setState({
-            user: findUserById(this.props.param.userID)
-        })
-    },*/
     render: function() {
+    console.log(this.props);
         const {userID} = this.props.id;
         return (
             <tr key={this.props.key}>

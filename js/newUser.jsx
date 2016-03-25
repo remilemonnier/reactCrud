@@ -6,35 +6,36 @@ import {Router, Route, IndexRoute, Link} from 'react-router';
 
 var newUser = React.createClass({
   createUser(event) {
-console.log(this);
-    event.preventDefault()
-        var users = this.state.users;
-
-        user= {
+        event.preventDefault()
+        var usersJson = localStorage.getItem('users');
+        var users = JSON.parse(usersJson);
+        var user = {
+                    id: Math.floor(Math.random()*11),
                     username: ReactDom.findDOMNode(this.refs.username).value,
-                    email: ReactDom.findDOMNode(this.refs.email).value
+                    email: ReactDom.findDOMNode(this.refs.email).value,
+                    password: ReactDom.findDOMNode(this.refs.password).value,
+                    phone: ReactDom.findDOMNode(this.refs.phone).value,
+                    picture: {
+                        large: null,
+                        medium: null,
+                        thumbnail: null
+                    },
                   };
-
         users.push(user);
-        this.setState({users: users});
+        localStorage.setItem('users', JSON.stringify(users));
 
-
-
-
-        /*
-    UserList.addUser({
-      username: ReactDom.findDOMNode(this.refs.username).value,
-      email: ReactDom.findDOMNode(this.refs.email).value
-    });*/
-    window.location = '/';
+        //window.location = '#/';
   },
 
   render() {
     return (
       <form onSubmit={this.createUser}>
+      <h1>Add an user</h1>
         <p>
-          <input type="text" ref="username" placeholder="Username" />
-          <input type="text" ref="email" placeholder="email" />
+          <label for="username">Username</label><input type="text" ref="username" id="username" placeholder="Username" />
+          <label for="email">Email</label><input type="email" ref="email" id="email" placeholder="email" />
+          <label for="password">Password</label><input type="password" ref="password" id="password" placeholder="password" />
+          <label for="phone">Phone</label><input type="text" ref="phone" id="phone" placeholder="phone" />
         </p>
         <p>
           <button type="submit">Save</button> <Link to="/">Cancel</Link>
