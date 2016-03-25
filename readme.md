@@ -12,3 +12,5 @@ npm install --save-dev webpack@1.12.12
 
 npm install --save-dev babel-loader@5.3.3
 npm install --save-dev babel-core@5.8.38
+
+npm install --save-dev history
