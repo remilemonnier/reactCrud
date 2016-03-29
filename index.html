@@ -1,96 +1,15 @@
+<!DOCTYPE html>
 <html>
-  <!-- styling etc ignored -->
   <head>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/lls.css" />
   </head>
-<body>
-  <h1>User!</h1>
-  <div class="container"></div>
-  <script src="react-0.14.7/build/react.js"></script>
-  <script src="react-0.14.7/build/react-dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
-  <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-  <script type="text/babel">
-var User = React.createClass({
-    render: function() {
-        return (
-            <tr>
-                <td ><img src={this.props.picture.thumbnail} /></td>
-                <td >{this.props.username}</td>
-                <td >{this.props.email}</td>
-                <td >{this.props.phone}</td>
-                <td >
-                    <button type="button" className="btn btn-sm btn-primary" >Edit</button>
-                </td>
-            </tr>
-            );
-    }
-});
-
-
-var UserList = React.createClass({
-    getInitialState: function(){
-        return {
-            users: [],
-            editingUser: {name:""}
-        };
-    },
-    addUser: function(){
-        var users = this.state.users;
-        var user = users.slice(-1)[0];
-        users.push(user);
-        this.setState({users: users});
-    },
-    loadFixture: function(){
-        this.serverRequest = $.get(this.props.source, function (results) {
-            var users = results.results.map(function(user){
-                return {
-                    username: user.user.username,
-                    email: user.user.email,
-                    password: user.user.password,
-                    phone: user.user.phone,
-                    picture: {
-                        large: user.user.picture.large,
-                        medium: user.user.picture.medium,
-                        thumbnail: user.user.picture.thumbnail,
-                    },
-                };
-            });
-            this.setState({users: users});
-        }.bind(this));
-    },
-    render: function() {
-        var self = this;
-        var users = this.state.users.map(function(p){
-            return <User username={p.username} email={p.email} phone={p.phone} picture={p.picture} />
-        });
-        return (
-            <div>
-                <h1>User list</h1>
-                <button type="button" className="btn btn-sm btn-success" onClick={this.loadFixture}>Load</button>&nbsp;
-                <button type="button" className="btn btn-sm btn-success" onClick={this.addUser}>Add</button>
-
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Photo</th>
-                            <th>Nom</th>
-                            <th>mail</th>
-                            <th>Tel</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody> {users} </tbody>
-                </table>
-            </div>
-            );
-    }
-});
-
-ReactDOM.render(
-    <UserList source="https://randomuser.me/api/?results=5" />,
-document.getElementById('container')
-);</script>
-
-</body>
+  <body>
+    <div id="container">
+    </div>
+    <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="bundle.js"></script>
+  </body>
 </html>

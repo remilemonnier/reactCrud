@@ -14,7 +14,6 @@ var newUser = React.createClass({
         var users = JSON.parse(usersJson);
 
         const { id } = this.props.params;
-        console.log(id);
 
         if (parseInt(id) > 0) {
             var users = users.filter(function(user){
