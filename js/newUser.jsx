@@ -40,7 +40,18 @@ var newUser = React.createClass({
 
     getInitialState: function(){
         const { id } = this.props.params;
-        var user = User.getUser(id);
+
+        if (parseInt(id) > 0) {
+            var user = User.getUser(id);
+        } else {
+            var user =  {
+                username: '',
+                email: '',
+                password: '',
+                phone: ''
+            };
+        }
+
         return {
             username: user.username,
             email: user.email,

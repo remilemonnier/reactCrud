@@ -18,7 +18,7 @@ var User = React.createClass({
         return (
             <tr key={this.props.key}>
                 <td ><img src={this.props.picture.thumbnail} height="40" width="40"/></td>
-                <td >{this.props.username} - {id}</td>
+                <td >{this.props.username}</td>
                 <td >{this.props.email}</td>
                 <td >{this.props.phone}</td>
                 <td >
