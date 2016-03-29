@@ -11,8 +11,7 @@ var UserList = React.createClass({
         return (
             <div>
                 <h1>User list</h1>
-                <button type="button" className="btn btn-sm btn-success" onClick={this.loadFixture}>Load</button>&nbsp;
-                <Link to="/user/add" className="btn btn-sm btn-success">Add</Link>&nbsp;
+                <Link to="/user/add" className="btn btn-sm btn-success">Add</Link>
 
                 <table className="table table-striped">
                     <thead>
