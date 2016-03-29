@@ -4,6 +4,7 @@ import {Router, Route, IndexRoute, Link, useRouterHistory} from 'react-router';
 import UserList from './userList.jsx';
 import User from './user.jsx';
 import newUser from './newUser.jsx';
+import deleteUser from './deleteUser.jsx';
 import { createHashHistory } from 'history';
 const appHistory = useRouterHistory(createHashHistory)({queryKey:false})
 
@@ -55,6 +56,7 @@ ReactDom.render((
     <Router history={appHistory}>
         <Route path="/" component={Home}/>
         <Route path="/user/add" component={newUser}/>
+        <Route path="/user/delete/:id" component={deleteUser}/>
     </Router>
 ),
 document.getElementById('container'));

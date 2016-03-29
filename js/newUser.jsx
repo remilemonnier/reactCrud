@@ -5,12 +5,15 @@ import UserList from './userList.jsx';
 import {Router, Route, IndexRoute, Link} from 'react-router';
 
 var newUser = React.createClass({
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
   createUser(event) {
         event.preventDefault()
         var usersJson = localStorage.getItem('users');
         var users = JSON.parse(usersJson);
         var user = {
-                    id: Math.floor(Math.random()*11),
+                    id: Math.floor(Math.random()*1000000),
                     username: ReactDom.findDOMNode(this.refs.username).value,
                     email: ReactDom.findDOMNode(this.refs.email).value,
                     password: ReactDom.findDOMNode(this.refs.password).value,
@@ -22,9 +25,9 @@ var newUser = React.createClass({
                     },
                   };
         users.push(user);
+        console.log(users);
         localStorage.setItem('users', JSON.stringify(users));
-
-        //window.location = '#/';
+        this.context.router.push('/');
   },
 
   render() {
@@ -38,7 +41,8 @@ var newUser = React.createClass({
           <label for="phone">Phone</label><input type="text" ref="phone" id="phone" placeholder="phone" />
         </p>
         <p>
-          <button type="submit">Save</button> <Link to="/">Cancel</Link>
+          <button type="submit">Save</button>
+          <Link to="/">Cancel</Link>
         </p>
       </form>
     )
