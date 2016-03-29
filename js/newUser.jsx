@@ -65,7 +65,7 @@ var newUser = React.createClass({
                     <label for="phone">Phone</label><input type="text" ref="phone" id="phone" placeholder="phone" value={this.state.phone} onChange={this.onChange} />
                 </p>
                 <p>
-                    <button type="submit" className="btn btn-sm btn-primary">Save</button>
+                    <button type="submit" className="btn btn-sm btn-success">Save</button>
                     <Link to="/" className="btn btn-sm btn-primary">Cancel</Link>
                 </p>
             </form>
