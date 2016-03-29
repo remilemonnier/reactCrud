@@ -22,7 +22,7 @@ var User = React.createClass({
                 <td >{this.props.email}</td>
                 <td >{this.props.phone}</td>
                 <td >
-                    <Link to="/user/edit/" className="btn btn-sm btn-primary">Edit</Link>
+                    <Link to={`/user/edit/${this.props.id}`} className="btn btn-sm btn-primary">Edit</Link>
                     <Link to={`/user/delete/${this.props.id}`} className="btn btn-sm btn-danger">Delete</Link>
                 </td>
             </tr>)

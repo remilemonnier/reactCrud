@@ -5,13 +5,23 @@ import UserList from './userList.jsx';
 import {Router, Route, IndexRoute, Link} from 'react-router';
 
 var newUser = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-  createUser(event) {
+    contextTypes: {
+        router: React.PropTypes.object.isRequired
+    },
+    createUser(event) {
         event.preventDefault()
         var usersJson = localStorage.getItem('users');
         var users = JSON.parse(usersJson);
+
+        const { id } = this.props.params;
+        console.log(id);
+
+        if (parseInt(id) > 0) {
+            var users = users.filter(function(user){
+                return (user.id != id);
+            });
+        }
+
         var user = {
                     id: Math.floor(Math.random()*1000000),
                     username: ReactDom.findDOMNode(this.refs.username).value,
@@ -25,28 +35,43 @@ var newUser = React.createClass({
                     },
                   };
         users.push(user);
-        console.log(users);
         localStorage.setItem('users', JSON.stringify(users));
         this.context.router.push('/');
-  },
+    },
 
-  render() {
-    return (
-      <form onSubmit={this.createUser}>
-      <h1>Add an user</h1>
-        <p>
-          <label for="username">Username</label><input type="text" ref="username" id="username" placeholder="Username" />
-          <label for="email">Email</label><input type="email" ref="email" id="email" placeholder="email" />
-          <label for="password">Password</label><input type="password" ref="password" id="password" placeholder="password" />
-          <label for="phone">Phone</label><input type="text" ref="phone" id="phone" placeholder="phone" />
-        </p>
-        <p>
-          <button type="submit">Save</button>
-          <Link to="/">Cancel</Link>
-        </p>
-      </form>
-    )
-  }
+    getInitialState: function(){
+        const { id } = this.props.params;
+        var user = User.getUser(id);
+        return {
+            username: user.username,
+            email: user.email,
+            password: user.password,
+            phone: user.phone,
+        };
+    },
+    onChange(e){
+        this.setState({value:event.target.value});
+    },
+
+    render() {
+        const { id } = this.props.params;
+
+        return (
+            <form onSubmit={this.createUser}>
+                <h1>Add/Edit an user</h1>
+                <p>
+                    <label for="username">Username</label><input type="text" ref="username" id="username" placeholder="Username" value={this.state.username} onChange={this.onChange}/>
+                    <label for="email">Email</label><input type="email" ref="email" id="email" placeholder="email" value={this.state.email} onChange={this.onChange}/>
+                    <label for="password">Password</label><input type="password" ref="password" id="password" placeholder="password" value={this.state.password} onChange={this.onChange}/>
+                    <label for="phone">Phone</label><input type="text" ref="phone" id="phone" placeholder="phone" value={this.state.phone} onChange={this.onChange} />
+                </p>
+                <p>
+                    <button type="submit" className="btn btn-sm btn-primary">Save</button>
+                    <Link to="/" className="btn btn-sm btn-primary">Cancel</Link>
+                </p>
+            </form>
+        )
+    }
 });
 
 

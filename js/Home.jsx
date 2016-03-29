@@ -56,6 +56,7 @@ ReactDom.render((
     <Router history={appHistory}>
         <Route path="/" component={Home}/>
         <Route path="/user/add" component={newUser}/>
+        <Route path="/user/edit/:id" component={newUser}/>
         <Route path="/user/delete/:id" component={deleteUser}/>
     </Router>
 ),
