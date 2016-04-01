@@ -14,7 +14,7 @@ npm install --save webpack@1.12.12
 
 npm install --save-dev webpack@1.12.12
 
-sudo npm install webpack-dev-server@1.12.1 -g
+npm install webpack-dev-server@1.12.1
 
 npm install --save-dev babel-loader@5.3.3
 
